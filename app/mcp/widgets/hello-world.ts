@@ -2,7 +2,7 @@ import { baseURL } from "@/baseUrl";
 import { getAppsSdkCompatibleHtml, ContentWidget } from "@/utils/chatgpt-widget";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 
-export const helloWorldResource = async (server: McpServer) => {
+export const helloWorldWidget = async (server: McpServer) => {
   const html = await getAppsSdkCompatibleHtml(baseURL, "/");
 
   const contentWidget: ContentWidget = {
