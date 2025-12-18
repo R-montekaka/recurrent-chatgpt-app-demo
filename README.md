@@ -120,7 +120,7 @@ http://localhost:3000/mcp
 ```
 app/
 ├── mcp/
-│   ├── [widget_name]     # MCP server with tool/resource
+│   ├── demo-widget/     # MCP server with tool/resource
 │   │   ├── tool.ts       # Tool
 │   │   └── widget.ts     # Widget
 │   └── route.ts          # MCP server with tool/resource registration
