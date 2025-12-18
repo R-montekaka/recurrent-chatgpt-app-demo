@@ -157,3 +157,72 @@ The configuration automatically handles:
 - Production URLs via `VERCEL_PROJECT_PRODUCTION_URL`
 - Preview/branch URLs via `VERCEL_BRANCH_URL`
 - Asset prefixing for correct resource loading in iframes
+
+## Recurrent Vehicle Data
+
+```json
+{
+  "inventory_status": "active",
+  "vin": "3FMTK4SX1NMA51399",
+  "year": 2022,
+  "make": "Ford",
+  "model": "Mustang Mach-E",
+  "trim": "GT AWD",
+  "vehicle_type": "BEV",
+  "epa_battery_range_miles": 270,
+  "miles_per_gallon": null,
+  "fuel_range_miles": null,
+  "battery_warranty_miles": 100000,
+  "battery_warranty_miles_unlimited": false,
+  "battery_warranty_years": 8,
+  "charge_time_l2_minutes_to_full": 917.22,
+  "charging_rate_l2_miles_per_hour": 19.11,
+  "charge_time_l1_minutes_to_full": 5029.32,
+  "charging_rate_l1_miles_per_hour": 3.48,
+  "charge_time_dc_minutes_to_add_100_miles": 25,
+  "efficiency_combined_kwh_per_100_miles": 40.19,
+  "expected_battery_range_miles": 292,
+  "total_range_miles": 292
+}
+```
+
+### Cost saving calculation
+
+Core Formula
+
+Savings = (Gas Car Total Cost) - (Your EV Total Cost)
+
+Where:
+
+- Gas Car Cost = Gas expenses + Maintenance ($0.061/mile)
+- Your EV Cost = Electricity expenses + Fuel (PHEV only) + Maintenance ($0.031/mile)
+
+Key Calculations
+Electricity Cost:  
+ (daily_miles / (100 / efficiency_kWh)) × electricity_rate
+
+Gas Cost (for PHEV or comparison):  
+ (miles / mpg) × gas_price
+
+The EnergyCostSavings class handles all calculations:
+
+- BEV: All miles on battery, compared to equivalent gas car
+- PHEV: Miles split between battery (up to range limit) and fuel (beyond range)
+
+Inputs Used
+
+- Daily miles driven (default: 37)
+- Electricity rate per kWh ($0.17)
+- Gas price per gallon ($3.48)
+- Vehicle efficiency (EPA data)
+- Battery range
+- MPG (default: 24 for comparison vehicle)
+
+View Options
+
+- Monthly/Yearly: Total savings over time period
+- Fuel Only: Just energy cost savings
+- Maintenance Only: Maintenance cost difference ($0.031 vs $0.061/mile)
+- Total: Combined fuel + maintenance savings
+
+The calculations use EPA efficiency data, EIA energy rates, and Consumer Reports maintenance costs for accuracy.

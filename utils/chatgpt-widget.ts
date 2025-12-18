@@ -9,7 +9,7 @@ export type ContentWidget = {
   templateUri: string;
   invoking: string;
   invoked: string;
-  html: string;
+  html?: string;
   description: string;
   widgetDomain: string;
 };
