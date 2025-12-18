@@ -55,14 +55,6 @@ export default function CostSavingsCalculator({
           </span>
         </div>
       </div>
-
-      {/* Cost Comparison */}
-      <CostComparison
-        gasTotal={costs.gasCarTotalCost}
-        evTotal={costs.evTotalCost}
-        evElectricityCost={costs.evElectricityCost}
-        savingsPercentage={costs.savingsPercentage}
-      />
     </div>
   );
 }
