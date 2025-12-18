@@ -2,7 +2,7 @@ import { widgetMeta, ContentWidget } from "@/utils/chatgpt-widget";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
 
-export const helloWorldTool = async (server: McpServer, contentWidget: ContentWidget) => {
+export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
   server.registerTool(
     contentWidget.id,
     {

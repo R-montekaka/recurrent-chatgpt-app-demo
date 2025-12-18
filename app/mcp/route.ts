@@ -1,9 +1,8 @@
 import { createMcpHandler } from "mcp-handler";
-import { helloWorldTool } from "./tools/hello-world";
-import { helloWorldWidget } from "./widgets/hello-world";
+import { tool as demoWidgetTool, widget as demoWidget } from "./demo-widget";
 
 const handler = createMcpHandler(async (server) => {
-  await helloWorldTool(server, await helloWorldWidget(server))
+  await demoWidgetTool(server, await demoWidget(server))
 });
 
 export const GET = handler;
