@@ -1,7 +1,7 @@
 import { widgetMeta, ContentWidget } from "@/utils/chatgpt-widget";
 import { McpServer } from "@modelcontextprotocol/sdk/server/mcp.js";
 import { z } from "zod";
-const apiUrl = "https://embeds.recurrentauto.com/api/cost-savings-used/api";
+const apiUrl = "https://embeds.recurrentauto.com/api/cost-savings-used";
 
 export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
   server.registerTool(
@@ -23,11 +23,11 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
       const params: Record<string, string> = {
         configuration_id: "86020a97-39f8-4b30-a00f-ad002b04aa4c",
       };
-      if (vin) params["vin"] = vin;
+
       if (postalCode) params["postal_code"] = postalCode;
 
       const queryString = new URLSearchParams(params).toString();
-      const fullUrl = `${apiUrl}?${queryString}`;
+      const fullUrl = `${apiUrl}/${vin}?${queryString}`;
 
       console.log(`fullUrl: ${fullUrl}`)
 
