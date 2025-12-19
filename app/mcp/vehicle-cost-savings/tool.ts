@@ -52,6 +52,7 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
 
       const data = await response.json();
       const { vehicle, location } = data;
+      console.log(`data?: ${JSON.stringify(data)}`);
       console.log(`vehicle?: ${JSON.stringify(vehicle)}`);
       console.log(`location?: ${JSON.stringify(location)}`);
       const { type, expected_range_miles, combined_fuel_efficiency } =
