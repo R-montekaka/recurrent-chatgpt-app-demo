@@ -29,6 +29,8 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
       const queryString = new URLSearchParams(params).toString();
       const fullUrl = `${apiUrl}?${queryString}`;
 
+      console.log(`fullUrl: ${fullUrl}`)
+
       const response = await fetch(fullUrl);
       console.log(`response?: ${response.ok}`);
 
