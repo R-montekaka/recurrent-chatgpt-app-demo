@@ -30,6 +30,8 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
       const fullUrl = `${apiUrl}?${queryString}`;
 
       const response = await fetch(fullUrl);
+      console.log(`response?: ${response.ok}`);
+
       if (!response.ok) {
         return {
           content: [
@@ -47,6 +49,7 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
       }
 
       const data = await response.json();
+      console.log(`data?: ${data}`);
       const { vehicle, location } = data;
       const { type, expected_range_miles, combined_fuel_efficiency } =
         vehicle || {};
