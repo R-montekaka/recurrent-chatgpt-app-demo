@@ -51,10 +51,14 @@ export default function Page() {
       ? parseFloat(efficiencyParam)
       : 40.19;
 
-  const componetDailyDriven = isChatGptApp ? dailyDriven : initialMiles;
-  const componentInitialEfficiency = isChatGptApp ? combinedFuelEfficiency : initialEfficiency;  
+  const componetDailyDriven = isChatGptApp
+    ? dailyDriven ?? initialMiles
+    : initialMiles;
+  const componentInitialEfficiency = isChatGptApp
+    ? combinedFuelEfficiency ?? initialEfficiency
+    : initialEfficiency;
     
-  if(componetDailyDriven && componentInitialEfficiency) {
+  if (componetDailyDriven != null && componentInitialEfficiency != null) {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <CostSavingsCalculator
