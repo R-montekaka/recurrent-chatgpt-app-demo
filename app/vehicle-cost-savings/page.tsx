@@ -47,7 +47,11 @@ export default function Page() {
         </div>
       );
     }
-    return null;
+    return (
+      <div className="min-h-screen bg-background text-foreground">
+        <p>Loading...</p>
+      </div>
+    );
   } else {
     return (
       <div className="min-h-screen bg-background text-foreground">
