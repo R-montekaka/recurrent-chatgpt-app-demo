@@ -37,24 +37,17 @@ export default function Page() {
     toolOutput?.combinedFuelEfficiency;
 
   if(isChatGptApp) {
-    return (
-      <div className="min-h-screen bg-background text-foreground">
-        <p>Daily Driven: {dailyDriven}</p>
-        <p>combinedFuelEfficiency: {combinedFuelEfficiency}</p>
-      </div>
-    )
-    // if (dailyDriven && combinedFuelEfficiency ) {
-    //   return (
-    //     <div className="min-h-screen bg-background text-foreground">
-    //       <CostSavingsCalculator
-    //         initialMiles={dailyDriven}
-    //         initialEfficiency={combinedFuelEfficiency}
-    //       />
-    //     </div>
-    //   );
-    // }
-
-    // return null;
+    if (dailyDriven && combinedFuelEfficiency ) {
+      return (
+        <div className="min-h-screen bg-background text-foreground">
+          <CostSavingsCalculator
+            initialMiles={dailyDriven}
+            initialEfficiency={combinedFuelEfficiency}
+          />
+        </div>
+      );
+    }
+    return null;
   } else {
     return (
       <div className="min-h-screen bg-background text-foreground">

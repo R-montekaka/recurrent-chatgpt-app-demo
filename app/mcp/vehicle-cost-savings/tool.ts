@@ -29,10 +29,7 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
       const queryString = new URLSearchParams(params).toString();
       const fullUrl = `${apiUrl}/${vin}?${queryString}`;
 
-      console.log(`fullUrl: ${fullUrl}`)
-
       const response = await fetch(fullUrl);
-      console.log(`response?: ${response.ok}`);
 
       if (!response.ok) {
         return {
@@ -52,9 +49,7 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
 
       const data = await response.json();
       const { vehicle, location } = data;
-      console.log(`data?: ${JSON.stringify(data)}`);
-      console.log(`vehicle?: ${JSON.stringify(vehicle)}`);
-      console.log(`location?: ${JSON.stringify(location)}`);
+
       const { type, expected_range_miles, combined_fuel_efficiency } =
         vehicle || {};
       const { gas_rate, electricity_rate } = location || {};
