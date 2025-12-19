@@ -1,6 +1,5 @@
 "use client";
 
-import { useSearchParams } from "next/navigation";
 import CostSavingsCalculator from "../components/cost-savings/CostSavingsCalculator";
 import {
   useWidgetProps,
@@ -8,8 +7,6 @@ import {
 } from "../hooks";
 
 export default function Page() {
-  const searchParams = useSearchParams();
-
   const toolOutput = useWidgetProps<{
     type?: string;
     expectedRangeMiles?: number;
@@ -39,35 +36,27 @@ export default function Page() {
     toolOutput?.result?.structuredContent?.combinedFuelEfficiency ||
     toolOutput?.combinedFuelEfficiency;
 
-  // Parse URL query parameters with defaults
-  const milesParam = searchParams.get("miles");
-  const efficiencyParam = searchParams.get("efficiency");
-
-  const initialMiles =
-    milesParam && !isNaN(parseFloat(milesParam)) ? parseFloat(milesParam) : 37;
-
-  const initialEfficiency =
-    efficiencyParam && !isNaN(parseFloat(efficiencyParam))
-      ? parseFloat(efficiencyParam)
-      : 40.19;
-
-  const componetDailyDriven = isChatGptApp
-    ? dailyDriven ?? initialMiles
-    : initialMiles;
-  const componentInitialEfficiency = isChatGptApp
-    ? combinedFuelEfficiency ?? initialEfficiency
-    : initialEfficiency;
+  if(isChatGptApp) {
+    if (dailyDriven && combinedFuelEfficiency ) {
+      return (
+        <div className="min-h-screen bg-background text-foreground">
+          <CostSavingsCalculator
+            initialMiles={dailyDriven}
+            initialEfficiency={combinedFuelEfficiency}
+          />
+        </div>
+      );
+    }
     
-  if (componetDailyDriven != null && componentInitialEfficiency != null) {
+    return null;
+  } else {
     return (
       <div className="min-h-screen bg-background text-foreground">
         <CostSavingsCalculator
-          initialMiles={componetDailyDriven}
-          initialEfficiency={componentInitialEfficiency}
+          initialMiles={32}
+          initialEfficiency={23}
         />
-      </div>
-    );
+      </div>      
+    )
   }
-
-  return null;
 }
