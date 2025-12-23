@@ -58,6 +58,8 @@ export class TokenManager {
   }
 
   private async refreshToken(): Promise<CachedToken> {
+    console.log(`Refreshing auth token: ${this.clientId}, ${this.clientSecret}`)
+
     if (!this.clientId || !this.clientSecret) {
       throw new AuthenticationError(
         401,
@@ -93,8 +95,7 @@ export class TokenManager {
       throw new AuthenticationError(401, "Invalid client credentials");
     }
 
-    if (!response.ok) {
-      console.log(`Failed to get auth token: ${this.clientId}, ${this.clientSecret}`)
+    if (!response.ok) {      
       throw new AuthenticationError(
         response.status,
         `Failed to get auth token: ${response.statusText}`
