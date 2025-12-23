@@ -1,7 +1,7 @@
 import { AuthTokenResponse, CachedToken } from "./types";
 import { AuthenticationError, RateLimitError } from "./errors";
 
-const AUTH_ENDPOINT = "https://api.recurrentauto.com/api/v1/auth_tokens";
+const AUTH_ENDPOINT = `${process.env.RECURRENT_API_BASE_URL}/api/v1/auth_tokens`;
 const TOKEN_REFRESH_BUFFER_MS = 5 * 60 * 1000; // 5 minutes before expiry
 const RATE_LIMIT_PER_HOUR = 100;
 
@@ -58,7 +58,7 @@ export class TokenManager {
   }
 
   private async refreshToken(): Promise<CachedToken> {
-    console.log(`Refreshing auth token: ${this.clientId}, ${this.clientSecret}`)
+    console.log(`Failed to get auth token: ${this.clientId}, ${this.clientSecret}`)
 
     if (!this.clientId || !this.clientSecret) {
       throw new AuthenticationError(

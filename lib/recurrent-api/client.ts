@@ -2,7 +2,7 @@ import { getTokenManager } from "./auth";
 import { VehicleListingsParams, VehicleListingsResponse } from "./types";
 import { VehicleApiError, AuthenticationError } from "./errors";
 
-const VEHICLE_LISTINGS_PATH = "/v1/dealer_vehicle_listings";
+const VEHICLE_LISTINGS_PATH = "/api/v1/dealer_vehicle_listings";
 const MAX_RETRIES = 2;
 
 function getApiBaseUrl(): string {
