@@ -9,12 +9,12 @@ A Next.js 15 application demonstrating OpenAI Apps SDK integration with MCP (Mod
 ## Commands
 
 ```bash
-pnpm dev      # Start dev server with Turbopack (http://localhost:3000)
+pnpm dev      # Start dev server with Turbopack (http://localhost:9000)
 pnpm build    # Production build
 pnpm start    # Run production build
 ```
 
-MCP endpoint: `http://localhost:3000/mcp`
+MCP endpoint: `http://localhost:9000/mcp`
 
 ## Architecture
 
@@ -23,6 +23,7 @@ MCP endpoint: `http://localhost:3000/mcp`
 The app exposes MCP tools that ChatGPT invokes. Two patterns exist:
 
 **Pattern 1: Co-located with MCP route** (for simple/demo tools)
+
 ```
 app/mcp/
 ├── route.ts         # MCP handler
@@ -33,6 +34,7 @@ app/mcp/
 ```
 
 **Pattern 2: Feature-based** (for tools with dedicated pages)
+
 ```
 app/{feature}/
 ├── mcp/
@@ -43,9 +45,10 @@ app/{feature}/
 ```
 
 Both patterns register tools in `app/mcp/route.ts`:
+
 ```typescript
 const handler = createMcpHandler(async (server) => {
-  await demoWidgetTool(server, await demoWidget(server));           // Pattern 1
+  await demoWidgetTool(server, await demoWidget(server)); // Pattern 1
   await vehicleCostSavingsTool(server, await vehicleCostSavings(server)); // Pattern 2
 });
 ```
@@ -53,6 +56,7 @@ const handler = createMcpHandler(async (server) => {
 ### Required OpenAI Metadata
 
 Tools must include this metadata for widget rendering:
+
 ```typescript
 {
   "openai/outputTemplate": widget.templateUri,      // Links to resource
@@ -73,6 +77,7 @@ Tools must include this metadata for widget rendering:
 ### React Hooks for ChatGPT API
 
 Located in `app/hooks/`. Key hooks:
+
 - `useWidgetProps<T>()` - Get tool output data
 - `useDisplayMode()` - Current mode: 'pip' | 'inline' | 'fullscreen'
 - `useCallTool()` - Call MCP tools from widgets
@@ -82,6 +87,7 @@ Located in `app/hooks/`. Key hooks:
 ### Widget Utilities
 
 `utils/chatgpt-widget.ts` provides the `ContentWidget` type for tool/resource registration:
+
 ```typescript
 type ContentWidget = {
   id: string;
@@ -90,7 +96,7 @@ type ContentWidget = {
   html?: string;
   description: string;
   widgetDomain: string;
-}
+};
 ```
 
 ## Key Files
@@ -111,6 +117,7 @@ type ContentWidget = {
 ## ChatGPT App SDK Guidelines
 
 Reference docs in `chatgpt-app-sdk/`:
+
 - Design for conversational entry, not traditional app navigation
 - Use inline cards for single actions, fullscreen for complex workflows
 - Limit 2 primary actions per card, no nested scrolling
