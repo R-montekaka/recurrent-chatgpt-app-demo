@@ -119,10 +119,12 @@ http://localhost:3000/mcp
 
 ```
 app/
-├── mcp/
-│   ├── demo-widget/     # MCP server with tool/resource
+├── vehicle-cost-savings/
+│   ├── mcp/              # MCP server with tool/resource
 │   │   ├── tool.ts       # Tool
 │   │   └── widget.ts     # Widget
+│   └── page.tsx          # Vehicle Cost Savings page
+├── mcp/
 │   └── route.ts          # MCP server with tool/resource registration
 ├── layout.tsx            # Root layout with SDK bootstrap
 ├── page.tsx              # Homepage content
