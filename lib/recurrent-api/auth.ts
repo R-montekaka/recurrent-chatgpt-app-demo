@@ -58,8 +58,6 @@ export class TokenManager {
   }
 
   private async refreshToken(): Promise<CachedToken> {
-    console.log(`Failed to get auth token: ${this.clientId}, ${this.clientSecret}`)
-
     if (!this.clientId || !this.clientSecret) {
       throw new AuthenticationError(
         401,

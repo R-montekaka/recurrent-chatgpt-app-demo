@@ -51,6 +51,7 @@ export const tool = async (server: McpServer, contentWidget: ContentWidget) => {
           price_max: params.price_max,
           city: params.city,
           limit: params.limit || 20,
+          inventory_status: "active"
         });
 
         // Transform snake_case to camelCase for frontend

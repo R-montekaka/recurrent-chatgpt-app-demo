@@ -28,6 +28,7 @@ export interface VehicleListingsParams {
   city?: string;
   offset?: number;
   limit?: number;
+  inventory_status?: string;
 }
 
 export interface Vehicle {
