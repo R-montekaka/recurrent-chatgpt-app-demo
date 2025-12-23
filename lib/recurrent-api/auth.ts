@@ -94,6 +94,7 @@ export class TokenManager {
     }
 
     if (!response.ok) {
+      console.log(`Failed to get auth token: ${this.clientId}, ${this.clientSecret}`)
       throw new AuthenticationError(
         response.status,
         `Failed to get auth token: ${response.statusText}`
