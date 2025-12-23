@@ -98,14 +98,14 @@ npm run dev
 pnpm dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to see the app.
+Open [http://localhost:9000](http://localhost:9000) to see the app.
 
 ### Testing the MCP Server
 
 The MCP server is available at:
 
 ```
-http://localhost:3000/mcp
+http://localhost:9000/mcp
 ```
 
 ### Connecting from ChatGPT
