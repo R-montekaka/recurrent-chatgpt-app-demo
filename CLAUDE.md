@@ -78,11 +78,18 @@ Tools must include this metadata for widget rendering:
 
 Located in `app/hooks/`. Key hooks:
 
-- `useWidgetProps<T>()` - Get tool output data
-- `useDisplayMode()` - Current mode: 'pip' | 'inline' | 'fullscreen'
+**API Hooks:**
 - `useCallTool()` - Call MCP tools from widgets
 - `useSendMessage()` - Send messages to ChatGPT
 - `useOpenExternal()` - Open external links (required for links in iframe)
+- `useRequestDisplayMode()` - Request display mode change
+
+**State Hooks:**
+- `useWidgetProps<T>()` - Get tool output data (structuredContent from tool response)
+- `useWidgetState<T>()` - Get/set persistent widget state
+- `useDisplayMode()` - Current mode: 'pip' | 'inline' | 'fullscreen'
+- `useIsChatGptApp()` - Check if running inside ChatGPT iframe
+- `useMaxHeight()` - Get max height for inline display
 
 ### Widget Utilities
 
@@ -99,6 +106,17 @@ type ContentWidget = {
 };
 ```
 
+### Recurrent API Client
+
+`lib/recurrent-api/` provides a typed client for the Recurrent vehicle data API:
+
+- `client.ts` - API client with `getVehicleListings()` method
+- `types.ts` - TypeScript types for vehicle data
+- `auth.ts` - API authentication handling
+- `errors.ts` - Custom error types
+
+Usage in tools: `const client = getRecurrentApiClient();`
+
 ## Key Files
 
 - `app/mcp/route.ts` - MCP server entry point (register all tools here)
@@ -106,6 +124,7 @@ type ContentWidget = {
 - `middleware.ts` - CORS handling for RSC
 - `baseUrl.ts` - Environment-aware URL detection (handles Vercel deployments)
 - `app/hooks/types.ts` - TypeScript types for `window.openai` API
+- `lib/recurrent-api/client.ts` - Recurrent API client
 
 ## Adding a New MCP Tool
 
@@ -117,7 +136,12 @@ type ContentWidget = {
 ## ChatGPT App SDK Guidelines
 
 Reference docs in `chatgpt-app-sdk/`:
+- `ui-guidelines.md` - Display modes, visual design, accessibility
+- `ux-principles.md` - Conversational UX patterns
+- `design-components.md` - Component library reference
+- `app-sdk-ui/` - UI component library docs
 
+Key principles:
 - Design for conversational entry, not traditional app navigation
 - Use inline cards for single actions, fullscreen for complex workflows
 - Limit 2 primary actions per card, no nested scrolling
