@@ -7,11 +7,7 @@ export function ThemeSync() {
   const theme = useOpenAIGlobal("theme");
 
   useEffect(() => {
-    if (theme === "dark") {
-      document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
-    }
+    document.documentElement.setAttribute("data-theme", theme ?? "light");
   }, [theme]);
 
   return null;

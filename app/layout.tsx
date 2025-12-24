@@ -57,7 +57,7 @@ function NextChatSDKBootstrap({ baseUrl }: { baseUrl: string }) {
                   mutation.target === htmlElement
                 ) {
                   const attrName = mutation.attributeName;
-                  if (attrName && attrName !== "suppresshydrationwarning" && attrName !== "class") {
+                  if (attrName && attrName !== "suppresshydrationwarning" && attrName !== "data-theme") {
                     htmlElement.removeAttribute(attrName);
                   }
                 }
