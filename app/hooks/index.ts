@@ -9,6 +9,7 @@ export { useDisplayMode } from "./use-display-mode";
 export { useWidgetProps } from "./use-widget-props";
 export { useWidgetState } from "./use-widget-state";
 export { useOpenAIGlobal } from "./use-openai-global";
+export { useTheme } from "./use-theme";
 
 // Additional hooks
 export { useMaxHeight } from "./use-max-height";
