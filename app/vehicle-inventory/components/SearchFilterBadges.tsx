@@ -1,5 +1,6 @@
 "use client";
 
+import { Badge } from "@openai/apps-sdk-ui/components/Badge";
 import { SearchParams } from "../types";
 
 interface SearchFilterBadgesProps {
@@ -8,26 +9,26 @@ interface SearchFilterBadgesProps {
 
 export function SearchFilterBadges({ searchParams }: SearchFilterBadgesProps) {
   return (
-    <div className="text-sm text-gray-600 flex flex-wrap gap-2">
+    <div className="flex flex-wrap gap-2">
       {searchParams.make && (
-        <span className="bg-gray-100 px-2 py-1 rounded">
+        <Badge color="secondary" variant="soft" size="sm">
           {searchParams.make}
-        </span>
+        </Badge>
       )}
       {searchParams.model && (
-        <span className="bg-gray-100 px-2 py-1 rounded">
+        <Badge color="secondary" variant="soft" size="sm">
           {searchParams.model}
-        </span>
+        </Badge>
       )}
       {searchParams.year && (
-        <span className="bg-gray-100 px-2 py-1 rounded">
+        <Badge color="secondary" variant="soft" size="sm">
           {searchParams.year}
-        </span>
+        </Badge>
       )}
       {searchParams.city && (
-        <span className="bg-gray-100 px-2 py-1 rounded">
+        <Badge color="secondary" variant="soft" size="sm">
           {searchParams.city}
-        </span>
+        </Badge>
       )}
     </div>
   );

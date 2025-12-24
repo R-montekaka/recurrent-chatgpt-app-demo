@@ -1,5 +1,7 @@
 "use client";
 
+import { Badge } from "@openai/apps-sdk-ui/components/Badge";
+import { Image } from "@openai/apps-sdk-ui/components/Image";
 import { VehicleData } from "../types";
 
 interface VehicleCardProps {
@@ -18,10 +20,10 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
   );
 
   return (
-    <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-white">
+    <div className="border rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-shadow bg-surface">
       {vehicle.photo && (
         <div className="aspect-video bg-gray-100">
-          <img
+          <Image
             src={vehicle.photo}
             alt={`${vehicle.year} ${vehicle.make} ${vehicle.model}`}
             className="w-full h-full object-cover"
@@ -33,30 +35,28 @@ export function VehicleCard({ vehicle }: VehicleCardProps) {
         <h3 className="font-semibold text-lg">
           {vehicle.year} {vehicle.make} {vehicle.model}
         </h3>
-        {vehicle.trim && <p className="text-sm text-gray-600">{vehicle.trim}</p>}
+        {vehicle.trim && <p className="text-sm text-secondary">{vehicle.trim}</p>}
 
-        <p className="text-xl font-bold text-green-600 mt-2">{formattedPrice}</p>
+        <p className="text-xl font-bold text-success mt-2">{formattedPrice}</p>
 
-        <div className="mt-3 space-y-1 text-sm text-gray-700">
+        <div className="mt-3 space-y-1 text-sm text-secondary">
           <p>Odometer: {formattedOdometer} miles</p>
           <p>Range: {vehicle.batteryRangeMiles} miles</p>
           {vehicle.exteriorColor && <p>Color: {vehicle.exteriorColor}</p>}
           {vehicle.stockNumber && <p>Stock: {vehicle.stockNumber}</p>}
         </div>
 
-        <div className="mt-3">
-          <span
-            className={`inline-block px-2 py-1 text-xs rounded ${
-              vehicle.inventoryStatus === "active"
-                ? "bg-green-100 text-green-800"
-                : "bg-yellow-100 text-yellow-800"
-            }`}
+        <div className="mt-3 flex flex-wrap gap-2">
+          <Badge
+            color={vehicle.inventoryStatus === "active" ? "success" : "warning"}
+            variant="soft"
+            size="sm"
           >
             {vehicle.inventoryStatus}
-          </span>
-          <span className="inline-block px-2 py-1 text-xs rounded bg-blue-100 text-blue-800 ml-2">
+          </Badge>
+          <Badge color="info" variant="soft" size="sm">
             {vehicle.type}
-          </span>
+          </Badge>
         </div>
       </div>
     </div>
