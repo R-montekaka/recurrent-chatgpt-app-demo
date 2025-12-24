@@ -3,11 +3,11 @@
 import { useWidgetProps, useIsChatGptApp } from "../hooks";
 import { WidgetProps } from "./types";
 import {
-  VehicleCard,
   LoadingState,
   ErrorState,
   EmptyState,
   SearchFilterBadges,
+  VehicleCarousel
 } from "./components";
 
 export default function Page() {
@@ -47,11 +47,7 @@ export default function Page() {
         </div>
       )}
 
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-        {vehicles.map((vehicle) => (
-          <VehicleCard key={vehicle.vin} vehicle={vehicle} />
-        ))}
-      </div>
+      <VehicleCarousel vehicles={vehicles} />
     </div>
   );
 }
